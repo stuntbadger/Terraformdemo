@@ -67,6 +67,7 @@ HEREDOC
 resource "aws_instance" "database" {
  ami = "${lookup(var.AmiLinux, var.region)}"
  instance_type = "t2.micro"
+ depends_on =["aws_instance.phpapp"]
  associate_public_ip_address = "false"
  subnet_id = "${aws_subnet.PrivateAZA.id}"
  vpc_security_group_ids = ["${aws_security_group.Database.id}"] key_name = "${var.key_name}"
